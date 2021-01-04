@@ -6,6 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./add-client.page.scss"],
 })
 export class AddClientPage implements OnInit {
+  clients;
   masks: any;
   phoneNumber: any = "";
   orderCode: any = "";
@@ -46,11 +47,12 @@ export class AddClientPage implements OnInit {
 
   onSubmit(form) {
     //check for the image and set the standart one if missing
-    let clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
-    clients.push(form.value);
-    localStorage.setItem("clientBaseClients", JSON.stringify(clients));
+    this.clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
+    this.clients.push(form.value);
+    localStorage.setItem("clientBaseClients", JSON.stringify(this.clients));
 
     console.log(form.value);
     form.reset();
   }
+
 }

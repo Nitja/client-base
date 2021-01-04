@@ -16,10 +16,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionChange)="setFilteredItems()"
+  ></ion-searchbar>
+
   <ion-list>
     <ion-list-header> Here will be sorting button </ion-list-header>
 
-    <ion-item *ngFor="let client of clients, let i = index"
+    <ion-item *ngFor="let client of clientsShown, let i = index"
     [routerLink]="['/client-view', i]" >
       <ion-avatar slot="start">
         <img *ngIf="client.photo"  src="{{ client.photo }}" />

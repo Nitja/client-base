@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { DataService } from "../services/data.service";
 
 @Component({
   selector: "app-clients",
@@ -6,16 +7,26 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./clients.page.scss"],
 })
 export class ClientsPage {
-  clients;
+  public clients;
+  clientsShown;
   showRemoveButton = true;
+  public searchTerm: string = "";
 
-  constructor() {}
+  constructor(private dataService: DataService) {}
 
   ionViewDidEnter() {
     this.clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
+    this.clientsShown = this.clients;
+    console.log(this.clients);
+    this.setFilteredItems();
+    console.log(this.clients);
   }
 
   onRemoveClient() {
 
+  }
+
+  setFilteredItems() {
+    this.clientsShown = this.dataService.filterItemsByName(this.clients, this.searchTerm);
   }
 }
