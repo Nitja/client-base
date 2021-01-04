@@ -1,0 +1,50 @@
+{
+  "submut": "Submit",
+  "required": "Required fields are marked with *",
+  "distributorPrice": "Distributor price",
+  "retailPrice": "Retail price",
+
+  "home": {
+    "title": "Home",
+    "recentSales": "Recent sales"
+  },
+
+  "add-sale": {
+    "title": "Add new sale"
+  },
+
+  "client": {
+    "addClientTitle": "Add new client",
+    "clientsTitle": "Clients",
+    "name": "Name",
+    "surname": "Surname",
+    "phone": "Phone",
+    "adress": "Adress",
+    "type": "Type of price",
+    "dateOfBirth": "Date of birth",
+    "photo": "Photo",
+    "info": "Additional info"
+  },
+
+  "debts": {
+    "title": "Debts"
+  },
+
+  "product": {
+    "addProductTitle": "Add new product",
+    "productsTitle": "Products",
+    "name": "Name",
+    "sku": "SKU",
+    "size": "Size",
+    "expire": "Expires (in months)",
+    "image": "Image"
+  },
+
+  "notifications": {
+    "title": "Notifications"
+  },
+
+  "menu": {
+    "title": "Menu"
+  }
+}

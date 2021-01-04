@@ -1,0 +1,27 @@
+{
+    "home": {
+      "title": "Главная",
+      "recentSales": "Последние продажи"
+    },
+  
+    "clients": {
+      "title": "Клиенты"
+    },
+  
+    "debts": {
+      "title": "Долги"
+    },
+  
+    "products": {
+      "title": "Продукты"
+    },
+  
+    "notifications": {
+      "title": "Оповещения"
+    },
+  
+    "menu": {
+      "title": "Меню"
+    }
+  }
+  

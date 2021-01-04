@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ 'product.productsTitle' | translate }} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="showRemoveButton" (click)="onRemoveProduct()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+      <ion-button [routerLink]="['/add-product']">
+        <ion-icon name="add-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-list-header> Here will be sorting button </ion-list-header>
+
+    <ion-item *ngFor="let product of products, let i = index"
+    [routerLink]="['/product-view', i]" >
+      <ion-avatar slot="start">
+        <img *ngIf="product.photo"  src="{{ product.photo }}" />
+        <img *ngIf="!product.photo"  src="../../assets/img/no-product.png" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ product.name }}</h2>
+        <p>{{ product.sku }}</p>
+        <p>{{ 'product.size' | translate }} {{ product.size }}</p>  
+        <p>{{ 'product.expire' | translate }} {{ product.expire }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'product.addProductTitle' | translate }} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="addForm" (ngSubmit)="onSubmit(productAddForm)" #productAddForm="ngForm">
+    <ion-list lines="full" class="ion-no-margin">
+      <ion-list-header lines="full">
+        <ion-label> {{ 'required' | translate }}  </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="floating">{{ 'product.sku' | translate }} *</ion-label>
+        <ion-input  type="text" name="sku" ngModel required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">{{ 'product.name' | translate }} *</ion-label>
+        <ion-input  type="text" name="name" ngModel required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'product.size' | translate }} *</ion-label>
+        <ion-input  type="text" name="size" ngModel required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'distributorPrice' | translate }} *</ion-label>
+        <ion-input  type="number" name="distributorPrice" ngModel required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'retailPrice' | translate }} *</ion-label>
+        <ion-input  type="number" name="retailPrice" ngModel required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'product.expire' | translate }}</ion-label>
+        <ion-input  type="number" name="expire" ngModel ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'product.image' | translate }}</ion-label>
+        <ion-input  type="file" name="image" ngModel ></ion-input>
+      </ion-item>
+      
+      <ion-button  size="large" type="submit" [routerLink]="['/products']" [disabled]="productAddForm.invalid" expand="block">{{ 'submut' | translate }}</ion-button>
+      
+    </ion-list>
+  </form>
+ 
+</ion-content>
+

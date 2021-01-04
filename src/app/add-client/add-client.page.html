@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'client.addClientTitle' | translate }} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form class="addForm" (ngSubmit)="onSubmit(clientAddForm)" #clientAddForm="ngForm">
+    <ion-list lines="full" class="ion-no-margin">
+      <ion-list-header lines="full">
+        <ion-label> {{ 'required' | translate }}  </ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label position="floating">{{ 'client.name' | translate }} *</ion-label>
+        <ion-input  type="text" name="name" ngModel required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'client.surname' | translate }} *</ion-label>
+        <ion-input  type="text" name="surname" ngModel required ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'client.phone' | translate }} *</ion-label>
+        <ion-input  type="tel" name="phone" ngModel required ></ion-input>
+        <!-- <ion-input type="tel" [(ngModel)]="phoneNumber" [textMask]="{mask: masks.phoneNumber}"></ion-input> -->
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'client.adress' | translate }}</ion-label>
+        <ion-input  type="text" name="adress" ngModel ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'client.dateOfBirth' | translate }}</ion-label>
+        <ion-input  type="date" name="dateOfBirth" ngModel ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ 'client.type' | translate }} *</ion-label>
+        <select name="type" ng-model="type" id="type" [(ngModel)]="type" required>
+          <option value="distributorPrice" selected>{{ 'distributorPrice' | translate }}</option>
+          <option value="retailPrice">{{ 'retailPrice' | translate }}</option>
+        </select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'client.photo' | translate }}</ion-label>
+        <ion-input  type="file" name="photo" ngModel ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{ 'client.info' | translate }}</ion-label>
+        <ion-input  type="text" name="adress" ngModel ></ion-input>
+        <ion-textarea name="info" ngModel ></ion-textarea>
+      </ion-item>
+      
+      <ion-button  size="large" type="submit" [routerLink]="['/clients']" [disabled]="clientAddForm.invalid" expand="block">{{ 'submut' | translate }}</ion-button>
+      
+    </ion-list>
+  </form>
+ 
+</ion-content>

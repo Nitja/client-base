@@ -1,0 +1,27 @@
+{
+    "home": {
+      "title": "Peamine",
+      "recentSales": "Viimased müügid"
+    },
+  
+    "clients": {
+      "title": "Kliendid"
+    },
+  
+    "debts": {
+      "title": "Võlad"
+    },
+  
+    "products": {
+      "title": "Tooted"
+    },
+  
+    "notifications": {
+      "title": "Teavitused"
+    },
+  
+    "menu": {
+      "title": "Menüü"
+    }
+  }
+  

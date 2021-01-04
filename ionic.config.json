@@ -1,0 +1,7 @@
+{
+  "name": "Client-base",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
