@@ -22,13 +22,13 @@
   ></ion-searchbar>
 
   <ion-list>
-    <ion-list-header> Here will be sorting button </ion-list-header>
-
-    <ion-item *ngFor="let client of clientsShown, let i = index"
-    [routerLink]="['/client-view', i]" >
+    <ion-item
+      *ngFor="let client of clientsShown, let i = index"
+      [routerLink]="['/client-view', i]"
+    >
       <ion-avatar slot="start">
-        <img *ngIf="client.photo"  src="{{ client.photo }}" />
-        <img *ngIf="!client.photo"  src="../../assets/img/no-avatar.png" />
+        <img *ngIf="client.photo" src="{{ client.photo }}" />
+        <img *ngIf="!client.photo" src="../../assets/img/no-avatar.png" />
       </ion-avatar>
       <ion-label>
         <h2>{{ client.name }} {{ client.surname }}</h2>

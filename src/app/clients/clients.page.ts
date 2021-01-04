@@ -16,10 +16,9 @@ export class ClientsPage {
 
   ionViewDidEnter() {
     this.clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
-    this.clientsShown = this.clients;
-    console.log(this.clients);
+    this.clientsShown = this.clients.sort((a, b) => a.name > b.name ? 1 : -1);
+    console.log(this.clientsShown);
     this.setFilteredItems();
-    console.log(this.clients);
   }
 
   onRemoveClient() {
@@ -27,6 +26,8 @@ export class ClientsPage {
   }
 
   setFilteredItems() {
-    this.clientsShown = this.dataService.filterItemsByName(this.clients, this.searchTerm);
+    //console.log(this.clientsShown);
+    this.clientsShown = this.dataService.filterItemsByNameAndSurname(this.clients, this.searchTerm);
+    //console.log(this.clientsShown);
   }
 }
