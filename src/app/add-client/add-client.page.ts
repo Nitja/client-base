@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-add-client",
@@ -10,8 +11,9 @@ export class AddClientPage implements OnInit {
   masks: any;
   phoneNumber: any = "";
   orderCode: any = "";
+  url: any;
 
-  constructor() {
+  constructor(private route: Router) {
     this.masks = {
       phoneNumber: [
         "(",
@@ -46,13 +48,41 @@ export class AddClientPage implements OnInit {
   }
 
   onSubmit(form) {
-    //check for the image and set the standart one if missing
     this.clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
-    this.clients.push(form.value);
+
+    let client = form.value;
+    if(client.photo){
+      let photo = document.getElementById("photo");
+      client.photo = this.getBase64Image(photo);
+    }
+    
+    this.clients.push(client);
     localStorage.setItem("clientBaseClients", JSON.stringify(this.clients));
 
-    console.log(form.value);
     form.reset();
+    this.route.navigateByUrl('/clients');
   }
 
+  getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+  }
+
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      }
+    }
+  }
 }

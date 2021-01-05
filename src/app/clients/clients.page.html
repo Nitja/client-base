@@ -27,7 +27,7 @@
       [routerLink]="['/client-view', i]"
     >
       <ion-avatar slot="start">
-        <img *ngIf="client.photo" src="{{ client.photo }}" />
+        <img *ngIf="client.photo" src="{{'data:image/jpg;base64,' + client.photo}}" />
         <img *ngIf="!client.photo" src="../../assets/img/no-avatar.png" />
       </ion-avatar>
       <ion-label>

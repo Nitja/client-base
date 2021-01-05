@@ -32,36 +32,37 @@ export class AppComponent {
   }
   
   sideMenu() {
-    console.log(this.translate);
-    console.log(this.translate.instant("menu.title"));
-    this.menu =
-    [
-      {
-        title : this.translate.stream("home.title"),
-        url   : "/home",
-        icon  : "home-outline"
-      },
-      {
-        title : this.translate.instant("notifications.title"),
-        url   : "/notifications",
-        icon  : "notifications-outline"
-      },
-      {
-        title : "Clients",
-        url   : "/clients",
-        icon  : "people-outline"
-      },
-      {
-        title : "Products",
-        url   : "/products",
-        icon  : "cart-outline"
-      },
-      {
-        title : "Debts",
-        url   : "/debts",
-        icon  : "card-outline"
-      },
-    ]
+    this.translate.get('home.title').subscribe(() => {
+      this.menu =
+      [
+        {
+          title : this.translate.instant("home.title"),
+          url   : "/home",
+          icon  : "home-outline"
+        },
+        {
+          title : this.translate.instant("notifications.title"),
+          url   : "/notifications",
+          icon  : "notifications-outline"
+        },
+        {
+          title : this.translate.instant("client.clientsTitle"),
+          url   : "/clients",
+          icon  : "people-outline"
+        },
+        {
+          title : this.translate.instant("product.productsTitle"),
+          url   : "/products",
+          icon  : "cart-outline"
+        },
+        {
+          title : this.translate.instant("debts.title"),
+          url   : "/debts",
+          icon  : "card-outline"
+        },
+      ]
+  });
+   
   }
 
 }

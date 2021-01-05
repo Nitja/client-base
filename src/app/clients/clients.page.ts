@@ -19,6 +19,7 @@ export class ClientsPage {
     this.clientsShown = this.clients.sort((a, b) => a.name > b.name ? 1 : -1);
     console.log(this.clientsShown);
     this.setFilteredItems();
+    console.log(this.clientsShown);
   }
 
   onRemoveClient() {
@@ -26,8 +27,8 @@ export class ClientsPage {
   }
 
   setFilteredItems() {
-    //console.log(this.clientsShown);
-    this.clientsShown = this.dataService.filterItemsByNameAndSurname(this.clients, this.searchTerm);
-    //console.log(this.clientsShown);
+    //this.clientsShown = this.dataService.filterItemsByNameAndSurname(this.clients, this.searchTerm);
+    this.clientsShown = this.dataService.filterItemsByParameters(this.clients, this.searchTerm, ["name", "surname"]);
+    
   }
 }
