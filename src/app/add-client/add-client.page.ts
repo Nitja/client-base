@@ -10,7 +10,6 @@ export class AddClientPage implements OnInit {
   clients;
   masks: any;
   phoneNumber: any = "";
-  orderCode: any = "";
   url: any;
 
   constructor(private route: Router) {
@@ -31,7 +30,6 @@ export class AddClientPage implements OnInit {
         /\d/,
         /\d/,
       ],
-      orderCode: [/[a-zA-z]/, ":", /\d/, /\d/, /\d/, /\d/],
     };
   }
 
@@ -41,7 +39,6 @@ export class AddClientPage implements OnInit {
   save() {
     let unmaskedData = {
       phoneNumber: this.phoneNumber.replace(/\D+/g, ""),
-      orderCode: this.orderCode.replace(/[^a-zA-Z0-9 -]/g, ""),
     };
 
     console.log(unmaskedData);

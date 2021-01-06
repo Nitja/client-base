@@ -24,7 +24,8 @@
       <ion-item>
         <ion-label position="floating">{{ 'client.phone' | translate }} *</ion-label>
         <!-- <ion-input  type="tel" name="phone" minlength="7" maxlength="11" ngModel required ></ion-input> -->
-        <input type="tel" name="phone" [(ngModel)]="phoneNumber" [textMask]="{mask: masks.phoneNumber}" />
+        <!-- <input type="tel" name="phone" [(ngModel)]="phoneNumber" [textMask]="{mask: masks.phoneNumber}" /> -->
+        <ion-input  type="tel" name="phone" pattern="^[(]{0,1}[+]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]{6,8}" ngModel required ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">{{ 'client.adress' | translate }}</ion-label>
