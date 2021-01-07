@@ -4,6 +4,7 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { TranslateService } from '@ngx-translate/core';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private dataService: DataService
   ) {
     translate.setDefaultLang('en');
     this.sideMenu();
@@ -29,6 +31,8 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    //clients v6ttakse baasis 1 kord ja kasutatakse 'ppi sees juba koopiat
+    this.dataService.fetchClients();
   }
   
   sideMenu() {

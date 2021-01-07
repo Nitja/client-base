@@ -1,47 +1,46 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class DataService {
-  constructor() {}
+  public clients = [];
+  public products = [];
+  public sales = [];
 
-  //Searches only by name - not used
-  filterItemsByName(items, searchTerm) {
-    return items.filter((item) => {
-      return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-    });
+  constructor() { }
+
+  addClient(form) {
+    //clients on juba v]etud ]ppi alguses fetchi abiga
+    let client = form;
+    if(client.photo){
+      let photo = document.getElementById("photo");
+      client.photo = this.getBase64Image(photo);
+    }
+    
+    this.clients.push(client);
+    localStorage.setItem("clientBaseClients", JSON.stringify(this.clients));
   }
 
-  //Searches by name and surname - not used
-  filterItemsByNameAndSurname(items, searchTerm) {
-    return items.filter((item) => {
-      return (
-        item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 ||
-        item.surname.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
-      );
-    });
+  getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
   }
 
-  //Searches items by any parameters
-  filterItemsByParameters(items, searchTerm, parameters) {
-    return items.filter((item) => {
-      let isFound = false;
-      parameters.forEach((parameeter) => {
-        if (typeof item[parameeter] === "string") {
-          if (
-            item[parameeter].toLowerCase().indexOf(searchTerm.toLowerCase()) >
-            -1
-          ) {
-            isFound = true;
-          }
-        } else if (typeof [parameeter] === "number") {
-          if (item[parameeter].indexOf(searchTerm) > -1) {
-            isFound = true;
-          }
-        }
-      });
-      return isFound;
-    });
+  getClients() {
+    return this.clients.slice(); //makes a copy of clients
+  }
+
+  fetchClients()
+  {
+    this.clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
   }
 }

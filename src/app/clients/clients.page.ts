@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { DataService } from "../services/data.service";
+import { FilterService } from "../services/filter.service";
 
 @Component({
   selector: "app-clients",
@@ -7,19 +8,17 @@ import { DataService } from "../services/data.service";
   styleUrls: ["./clients.page.scss"],
 })
 export class ClientsPage {
-  public clients;
-  clientsShown;
+  clients = [];
+  clientsShown = [];
   showRemoveButton = true;
   public searchTerm: string = "";
 
-  constructor(private dataService: DataService) {}
+  constructor(private filterService: FilterService, private dataService: DataService) {}
 
   ionViewDidEnter() {
-    this.clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
+    this.clients = this.dataService.getClients();
     this.clientsShown = this.clients.sort((a, b) => a.name > b.name ? 1 : -1);
-    console.log(this.clientsShown);
     this.setFilteredItems();
-    console.log(this.clientsShown);
   }
 
   onRemoveClient() {
@@ -28,7 +27,7 @@ export class ClientsPage {
 
   setFilteredItems() {
     //this.clientsShown = this.dataService.filterItemsByNameAndSurname(this.clients, this.searchTerm);
-    this.clientsShown = this.dataService.filterItemsByParameters(this.clients, this.searchTerm, ["name", "surname"]);
+    this.clientsShown = this.filterService.filterItemsByParameters(this.clients, this.searchTerm, ["name", "surname"]);
     
   }
 }
