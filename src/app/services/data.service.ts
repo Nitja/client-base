@@ -35,6 +35,11 @@ export class DataService {
     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
   }
 
+  getClientsSortedByName()
+  {
+    return this.getClients().sort((a, b) => a.name > b.name ? 1 : -1);
+  }
+
   getClients() {
     return this.clients.slice(); //makes a copy of clients
   }

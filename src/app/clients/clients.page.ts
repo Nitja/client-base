@@ -8,17 +8,13 @@ import { FilterService } from "../services/filter.service";
   styleUrls: ["./clients.page.scss"],
 })
 export class ClientsPage {
-  clients = [];
   clientsShown = [];
-  showRemoveButton = true;
   public searchTerm: string = "";
 
   constructor(private filterService: FilterService, private dataService: DataService) {}
 
   ionViewDidEnter() {
-    this.clients = this.dataService.getClients();
-    this.clientsShown = this.clients.sort((a, b) => a.name > b.name ? 1 : -1);
-    this.setFilteredItems();
+    this.clientsShown = this.dataService.getClientsSortedByName();
   }
 
   onRemoveClient() {
@@ -27,7 +23,7 @@ export class ClientsPage {
 
   setFilteredItems() {
     //this.clientsShown = this.dataService.filterItemsByNameAndSurname(this.clients, this.searchTerm);
-    this.clientsShown = this.filterService.filterItemsByParameters(this.clients, this.searchTerm, ["name", "surname"]);
+    this.clientsShown = this.filterService.filterItemsByParameters(this.dataService.getClients(), this.searchTerm, ["name", "surname"]);
     
   }
 }
