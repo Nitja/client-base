@@ -1,8 +1,10 @@
 {
   "submut": "Submit",
+  "cancel": "Cancel",
   "required": "Required fields are marked with *",
   "distributorPrice": "Distributor price",
   "retailPrice": "Retail price",
+  "months": "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec",
 
   "home": {
     "title": "Home",

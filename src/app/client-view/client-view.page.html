@@ -8,5 +8,15 @@
 </ion-header>
 
 <ion-content>
-  {{ client.name }} {{ client.surname }}
+  <ion-list-header>{{ client.name }} {{ client.surname }}</ion-list-header>
+  
+
+  <ion-avatar>
+    <img *ngIf="client.photo" src="{{'data:image/jpg;base64,' + client.photo}}" />
+    <img *ngIf="!client.photo" src="../../assets/img/no-avatar.png" />
+  </ion-avatar>
+/////////
+  <ion-img *ngIf="client.photo" src="{{'data:image/jpg;base64,' + client.photo}}" ></ion-img>
+  <ion-img *ngIf="!client.photo" src="../../assets/img/no-avatar.png"  ></ion-img>
+
 </ion-content>

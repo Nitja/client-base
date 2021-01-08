@@ -31,7 +31,12 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">{{ 'client.dateOfBirth' | translate }}</ion-label>
-        <ion-input  type="date" name="dateOfBirth" min="1900-01-01" max="2020-01-01" ngModel ></ion-input>
+        <!-- <ion-input  type="date" name="dateOfBirth" min="1900-01-01" max="2020-01-01" ngModel ></ion-input> -->
+        <ion-datetime name="dateOfBirth" displayFormat="DD/MMM/YYYY" 
+        monthShortNames="{{ 'months' | translate }}"
+        cancelText="{{ 'cancel' | translate }}"
+        doneText="{{ 'submit' | translate }}"
+        min="1900-01-01" max="2020-12-31" ngModel></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>{{ 'client.type' | translate }} *</ion-label>

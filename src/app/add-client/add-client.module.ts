@@ -8,7 +8,6 @@ import { AddClientPageRoutingModule } from './add-client-routing.module';
 
 import { AddClientPage } from './add-client.page';
 import { TranslateModule } from '@ngx-translate/core';
-import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   imports: [
@@ -16,8 +15,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     FormsModule,
     IonicModule,
     AddClientPageRoutingModule,
-    TranslateModule,
-    TextMaskModule
+    TranslateModule
   ],
   declarations: [AddClientPage]
 })
