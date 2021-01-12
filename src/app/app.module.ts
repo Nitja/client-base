@@ -12,6 +12,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { PopovercomponentPageModule } from './popovercomponent/popovercomponent.module'; 
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
         deps: [HttpClient],
       },
     }),
+    PopovercomponentPageModule
   ],
   providers: [
     StatusBar,

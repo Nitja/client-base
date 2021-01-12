@@ -1,10 +1,12 @@
-ion-img {
-    width: 40%;
+.header {
+    text-align: center;
+    font-size: 26px;
+    margin: 5px;
+    padding: 5px;
+    background-color: aqua;
 }
 
-ion-avatar {
-    width:100% !important; 
-    height : 100% !important; 
-    max-width: 40% !important; //any size 
-    max-height: 40% !important; //any size
+.phone {
+    font-size: 26px;
+    color: blue;
 }

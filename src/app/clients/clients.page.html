@@ -25,6 +25,9 @@
     <ion-item
       *ngFor="let client of clientsShown, let i = index"
       [routerLink]="['/client-view', i]"
+      (touchstart)="pressEvent($event, 'start', i)"
+      (touchend)="pressEvent($event, 'end', i)"
+      class="clientItem"
     >
       <ion-avatar slot="start">
         <img *ngIf="client.photo" src="{{'data:image/jpg;base64,' + client.photo}}" />

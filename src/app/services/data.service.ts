@@ -23,6 +23,10 @@ export class DataService {
     localStorage.setItem("clientBaseClients", JSON.stringify(this.clients));
   }
 
+  removeClient(id) {
+    console.log("remove client from id = " + id);
+  }
+
   getBase64Image(img) {
     var canvas = document.createElement("canvas");
     canvas.width = img.width;

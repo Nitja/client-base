@@ -1,22 +1,36 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button  defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title> {{ client.name }} {{ client.surname }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list-header>{{ client.name }} {{ client.surname }}</ion-list-header>
-  
-
-  <ion-avatar>
-    <img *ngIf="client.photo" src="{{'data:image/jpg;base64,' + client.photo}}" />
-    <img *ngIf="!client.photo" src="../../assets/img/no-avatar.png" />
-  </ion-avatar>
-/////////
-  <ion-img *ngIf="client.photo" src="{{'data:image/jpg;base64,' + client.photo}}" ></ion-img>
-  <ion-img *ngIf="!client.photo" src="../../assets/img/no-avatar.png"  ></ion-img>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col class="header"> {{ client.name }} {{ client.surname }} </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="5">
+        <ion-img
+          *ngIf="client.photo"
+          src="{{'data:image/jpg;base64,' + client.photo}}"
+        ></ion-img>
+        <ion-img
+          *ngIf="!client.photo"
+          src="../../assets/img/no-avatar.png"
+        ></ion-img>
+      </ion-col>
+      <ion-col size="7">
+        <ion-row>
+          <ion-col class="phone"> {{ client.phone }} 
+            <ion-icon name="call-outline"></ion-icon>
+            
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

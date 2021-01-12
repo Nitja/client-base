@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'client-view/:id',
     loadChildren: () => import('./client-view/client-view.module').then( m => m.ClientViewPageModule)
   },
+  {
+    path: 'popovercomponent',
+    loadChildren: () => import('./popovercomponent/popovercomponent.module').then( m => m.PopovercomponentPageModule)
+  },
 ];
 
 @NgModule({
