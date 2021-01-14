@@ -12,7 +12,9 @@ import { AppRoutingModule } from "./app-routing.module";
 import { TranslateLoader, TranslateModule } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { PopovercomponentPageModule } from './popovercomponent/popovercomponent.module'; 
+import { PopovercomponentPageModule } from "./popovercomponent/popovercomponent.module";
+import { IonicStorageModule } from "@ionic/storage";
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,7 @@ import { PopovercomponentPageModule } from './popovercomponent/popovercomponent.
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -29,13 +32,14 @@ import { PopovercomponentPageModule } from './popovercomponent/popovercomponent.
         deps: [HttpClient],
       },
     }),
-    PopovercomponentPageModule
+    PopovercomponentPageModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    TranslateModule
+    TranslateModule,
   ],
   bootstrap: [AppComponent],
 })
