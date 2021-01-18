@@ -13,8 +13,13 @@ export class DataService {
   constructor(private storage: Storage, private nativeStorage: NativeStorage) {}
 
   addClient(form) {
-    //clients on juba v]etud ]ppi alguses fetchi abiga
+    //client have already gotten when app launched in fetchClients()
     let client = form.value;
+    
+    console.log("Clients: " + this.clients);
+    console.log("Form.value " + form.value);
+    console.log("Client" + client);
+
     if (client.photo) {
       let photo = document.getElementById("photo");
       client.photo = this.getBase64Image(photo);
@@ -24,9 +29,7 @@ export class DataService {
     //console.log(this.clients);
     localStorage.setItem("clientBaseClients", JSON.stringify(this.clients));
     this.storage.set("clientBaseClients", JSON.stringify(this.clients));
-    this.nativeStorage.setItem(
-      "clientBaseClients",
-      JSON.stringify(this.clients)
+    this.nativeStorage.setItem("clientBaseClients", JSON.stringify(this.clients)
     );
   }
 
@@ -57,8 +60,8 @@ export class DataService {
   }
 
   fetchClients() {
-    this.clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
-    console.log("Clients from localstorage: ", this.clients);
+ //   this.clients = JSON.parse(localStorage.getItem("clientBaseClients")) || [];
+  //  console.log("Clients from localstorage: ", this.clients);
 
     //  this.storage.set("clientBaseClients", JSON.stringify(this.clients));
     //  console.log("storage from stringify " + this.clients);
@@ -78,6 +81,7 @@ export class DataService {
     //   console.log('Client [0]: ', this.clients[0]);
     // });
 
+
     //native storage v1
     // this.nativeStorage.setItem('clientBaseClients', JSON.stringify(this.clients));
     // console.log("native storage " + this.nativeStorage);
@@ -87,15 +91,15 @@ export class DataService {
 
 
     //native storage v2
-    this.nativeStorage
-      .setItem("clientBaseClients", JSON.stringify(this.clients))
-      .then(
-        () => console.log("Stored item!"),
-        (error) => console.error("Error storing item", error)
-      );
+    // this.nativeStorage
+    //   .setItem("clientBaseClients", JSON.stringify(this.clients))
+    //   .then(
+    //     () => console.log("Stored item!"),
+    //     (error) => console.error("Error storing item", error)
+    //   );
 
     this.nativeStorage.getItem("clientBaseClients").then(
-      (data) => console.log('Clients from nativestorage2: '+ data),
+      (data) => { console.log('Clients from nativestorage2: '+ data),  this.clients = data },
       (error) => console.error(error)
     );
   }
