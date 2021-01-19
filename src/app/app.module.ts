@@ -14,7 +14,6 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { PopovercomponentPageModule } from "./popovercomponent/popovercomponent.module";
 import { IonicStorageModule } from "@ionic/storage";
-import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,7 +36,6 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
   providers: [
     StatusBar,
     SplashScreen,
-    NativeStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     TranslateModule,
   ],
