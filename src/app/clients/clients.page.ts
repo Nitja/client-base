@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { PopoverController } from "@ionic/angular";
-//import { PopoverComponent } from '../../component/popover/popover.component';
 import { PopovercomponentPage } from "../popovercomponent/popovercomponent.page";
 import { DataService } from "../services/data.service";
 import { FilterService } from "../services/filter.service";
@@ -19,11 +19,13 @@ export class ClientsPage {
   constructor(
     private filterService: FilterService,
     private dataService: DataService,
-    public popoverController: PopoverController
+    public popoverController: PopoverController,
+    public router: Router
   ) {}
 
   ionViewDidEnter() {
     this.clientsShown = this.dataService.getClientsSortedByName();
+    console.log(this.clientsShown);
   }
 
   setFilteredItems() {
@@ -51,32 +53,22 @@ export class ClientsPage {
   }
 
   async CreatePopover(event, id: number) {
-    // this.popoverController
-    //   .create({
-    //     event,
-    //     component: PopovercomponentPage,
-    //     cssClass: "popoverClass",
-    //     showBackdrop: false,
-    //     componentProps: {
-    //       'page': 'clients',
-    //       'id': id
-    //     }
-    //   })
-    //   .then((popoverElement) => {
-    //     popoverElement.present();
-    //   });
+    const popover = await this.popoverController.create({
+      component: PopovercomponentPage,
+      cssClass: "popoverClass",
+      event: event,
+      showBackdrop: false,
+    });
 
-      const popover = await this.popoverController.create({
-        component: PopovercomponentPage,
-        cssClass: "popoverClass",
-        event: event,
-        showBackdrop: false
-      });
+    popover.onDidDismiss().then((res) => {
+      if (res.data == "remove") {
+        this.dataService.removeClient(id);
+        this.ionViewDidEnter();
+      } else if (res.data == "edit") {
+        this.router.navigate(["add-client", id]);
+      }
+    });
 
-      popover.onDidDismiss().then((res) => {
-        console.log('Results: ', res.data);
-      });
-        
-      return await popover.present();
+    return await popover.present();
   }
 }

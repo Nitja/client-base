@@ -15,19 +15,19 @@
       </ion-list-header>
       <ion-item>
         <ion-label position="floating">{{ 'client.name' | translate }} *</ion-label>
-        <ion-input  type="text" name="name" ngModel required ></ion-input>
+        <ion-input  type="text" name="name" [(ngModel)]="client.name" required ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">{{ 'client.surname' | translate }} *</ion-label>
-        <ion-input  type="text" name="surname" ngModel required ></ion-input>
+        <ion-input  type="text" name="surname" [(ngModel)]="client.surname" required ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">{{ 'client.phone' | translate }} *</ion-label>
-        <ion-input type="tel" name="phone" pattern="^[(]{0,1}[+]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]{6,8}" ngModel required ></ion-input>
+        <ion-input type="tel" name="phone" pattern="^[(]{0,1}[+]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]{6,8}" [(ngModel)]="client.phone" required ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">{{ 'client.adress' | translate }}</ion-label>
-        <ion-input  type="text" name="adress" ngModel ></ion-input>
+        <ion-input  type="text" name="adress" [(ngModel)]="client.adress" ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">{{ 'client.dateOfBirth' | translate }}</ion-label>
@@ -36,11 +36,11 @@
         monthShortNames="{{ 'months' | translate }}"
         cancelText="{{ 'cancel' | translate }}"
         doneText="{{ 'submit' | translate }}"
-        min="1900-01-01" max="2020-12-31" ngModel></ion-datetime>
+        min="1900-01-01" max="2020-12-31" [(ngModel)]="client.dateOfBirth"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>{{ 'client.type' | translate }} *</ion-label>
-        <select name="type" ng-model="type" id="type" [(ngModel)]="type" required>
+        <select name="type" ng-model="type" id="type" [(ngModel)]="client.type" required>
           <option value="distributorPrice" selected>{{ 'distributorPrice' | translate }}</option>
           <option value="retailPrice">{{ 'retailPrice' | translate }}</option>
         </select>
@@ -48,12 +48,12 @@
       <ion-item>
         <ion-label position="floating">{{ 'client.photo' | translate }}</ion-label>
         <img id="photo" [src]="url" hidden> <br/>
-        <input type='file' name="photo" ngModel (change)="onSelectFile($event)">
+        <input type='file' name="photo" [(ngModel)]="client.photo" (change)="onSelectFile($event)">
       </ion-item>
       <ion-item>
         <ion-label position="floating">{{ 'client.info' | translate }}</ion-label>
-        <ion-input  type="text" name="adress" ngModel ></ion-input>
-        <ion-textarea name="info" ngModel ></ion-textarea>
+        <!-- <ion-input  type="text" name="adress" [(ngModel)]="client.name" ></ion-input> -->
+        <ion-textarea name="info" [(ngModel)]="client.info" ></ion-textarea>
       </ion-item>
       
       <ion-button  size="large" type="submit" [disabled]="clientAddForm.invalid" expand="block">{{ 'submut' | translate }}</ion-button>

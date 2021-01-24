@@ -3,11 +3,8 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>22 {{ 'client.clientsTitle' | translate }} </ion-title>
+    <ion-title>{{ 'client.clientsTitle' | translate }} </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="onRemoveClient()">
-        <ion-icon name="trash-outline"></ion-icon>
-      </ion-button>
       <ion-button [routerLink]="['/add-client']">
         <ion-icon name="add-outline" size="large"></ion-icon>
       </ion-button>

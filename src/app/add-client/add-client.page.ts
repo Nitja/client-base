@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../services/data.service";
 
 @Component({
@@ -8,27 +8,44 @@ import { DataService } from "../services/data.service";
   styleUrls: ["./add-client.page.scss"],
 })
 export class AddClientPage implements OnInit {
-  url: any;
+  client = []; //current client to edit
+  clientID;
 
-  constructor(private route: Router, private dataService: DataService) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private dataService: DataService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    let clientsShown = this.dataService.getClientsSortedByName();
+    this.activatedRoute.params.subscribe((param) => {
+      if (param.id) {
+        this.clientID = param.id;
+        this.client = clientsShown[this.clientID];
+        console.log("param.id = " + param.id);
+        console.log(this.client);
+        console.log(this.clientID);
+      }
+    });
+  }
 
   onSubmit(form) {
-    this.dataService.addClient(form);
+    this.dataService.addClient(form, this.clientID);
 
     form.reset();
-    this.route.navigateByUrl("/clients");
+    this.router.navigateByUrl("/clients");
   }
 
   onSelectFile(event) {
     // called each time file input changes
+    let url: any;
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => {
         // called once readAsDataURL is completed
-        this.url = event.target.result;
+        url = event.target.result;
       };
     }
   }
