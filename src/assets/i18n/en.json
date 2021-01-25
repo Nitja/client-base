@@ -32,6 +32,16 @@
     "title": "Debts"
   },
 
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "export": "Export data",
+    "import": "Import data",
+    "en": "English",
+    "ee": "Eesti",
+    "ru": "Русский"
+  },
+
   "product": {
     "addProductTitle": "Add new product",
     "productsTitle": "Products",

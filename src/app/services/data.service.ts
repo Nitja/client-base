@@ -9,6 +9,7 @@ export class DataService {
   public clientsShown = [];
   public products = [];
   public sales = [];
+  public language: string;
 
   constructor(private storage: Storage) {}
 
@@ -62,6 +63,24 @@ export class DataService {
       // console.log(this.clients);
       // console.log("client[0] " + this.clients[0]);
       // console.log ("muudatused");
+    });
+  }
+
+  setLanguage(language: string) {
+    this.language = language;
+    localStorage.setItem("clientBaseLanguage", this.language);
+
+  }
+
+  getLanguage() {
+    return this.language.slice();
+  }
+
+  fetchLanguage() {
+    this.storage.get("clientBaseLanguage").then((val) => {
+      this.language = val || "en";
+      console.log("language from fetch");
+      console.log(this.language);
     });
   }
 }
