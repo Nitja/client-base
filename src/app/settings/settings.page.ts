@@ -33,19 +33,21 @@ export class SettingsPage implements OnInit {
           type: "radio",
           label: this.translate.instant("settings.en"),
           value: "en",
-          checked: true,
+          checked: this.currentLanguage == "en",
         },
         {
           name: "ee",
           type: "radio",
           label: this.translate.instant("settings.ee"),
           value: "ee",
+          checked: this.currentLanguage == "ee",
         },
         {
           name: "ru",
           type: "radio",
           label: this.translate.instant("settings.ru"),
           value: "ru",
+          checked: this.currentLanguage == "ru",
         },
       ],
       buttons: [
@@ -63,7 +65,7 @@ export class SettingsPage implements OnInit {
             console.log("alertdata: " + alertData);
             this.currentLanguage = alertData;
             this.translate.use(this.currentLanguage);
-            this.dataService.setLanguage(this.currentLanguage);
+            this.dataService.setLanguage(this.currentLanguage, true);
           },
         },
       ],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormControl, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DataService } from "../services/data.service";
 
@@ -10,6 +11,8 @@ import { DataService } from "../services/data.service";
 export class AddClientPage implements OnInit {
   client = []; //current client to edit
   clientID;
+  clientAddForm: FormGroup;
+  url: any;
 
   constructor(
     private router: Router,
@@ -26,7 +29,36 @@ export class AddClientPage implements OnInit {
         console.log("param.id = " + param.id);
         console.log(this.client);
         console.log(this.clientID);
+        this.initFormWithData(this.client);
+      } else {
+        this.initForm();
       }
+    });
+  }
+
+  initForm() {
+    this.clientAddForm = new FormGroup({
+      name: new FormControl(),
+      surname: new FormControl(),
+      phone: new FormControl(),
+      address: new FormControl(),
+      dateOfBirth: new FormControl(),
+      type: new FormControl(),
+      photo: new FormControl(),
+      info: new FormControl(),
+    });
+  }
+
+  initFormWithData(client) {
+    this.clientAddForm = new FormGroup({
+      name: new FormControl(client.name),
+      surname: new FormControl(client.surname),
+      phone: new FormControl(client.phone),
+      address: new FormControl(client.address),
+      dateOfBirth: new FormControl(client.dateOfBirth),
+      type: new FormControl(client.type),
+      photo: new FormControl(client.photo),
+      info: new FormControl(client.info),
     });
   }
 
@@ -39,13 +71,15 @@ export class AddClientPage implements OnInit {
 
   onSelectFile(event) {
     // called each time file input changes
-    let url: any;
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
       reader.onload = (event) => {
         // called once readAsDataURL is completed
-        url = event.target.result;
+        this.url = event.target.result;
+       // let photo = document.getElementById("photo");
+       // this.clientAddForm.
+      
       };
     }
   }

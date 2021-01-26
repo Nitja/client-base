@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Storage } from "@ionic/storage";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -10,6 +11,9 @@ export class DataService {
   public products = [];
   public sales = [];
   public language: string;
+
+  private languageSource = new BehaviorSubject("Initial language");
+  languageChanged = this.languageSource.asObservable();
 
   constructor(private storage: Storage) {}
 
@@ -66,10 +70,12 @@ export class DataService {
     });
   }
 
-  setLanguage(language: string) {
+  setLanguage(language: string, setToStorage: boolean) {
     this.language = language;
-    localStorage.setItem("clientBaseLanguage", this.language);
-
+    if (setToStorage) {
+      this.storage.set("clientBaseLanguage", this.language);
+      this.languageSource.next("Language changed");
+    }
   }
 
   getLanguage() {
@@ -77,10 +83,6 @@ export class DataService {
   }
 
   fetchLanguage() {
-    this.storage.get("clientBaseLanguage").then((val) => {
-      this.language = val || "en";
-      console.log("language from fetch");
-      console.log(this.language);
-    });
+    return this.storage.get("clientBaseLanguage");
   }
 }

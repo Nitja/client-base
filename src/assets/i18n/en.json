@@ -1,5 +1,5 @@
 {
-  "submut": "Submit",
+  "submit": "Submit",
   "cancel": "Cancel",
   "required": "Required fields are marked with *",
   "distributorPrice": "Distributor price",
@@ -21,7 +21,7 @@
     "name": "Name",
     "surname": "Surname",
     "phone": "Phone",
-    "adress": "Adress",
+    "address": "Address",
     "type": "Type of price",
     "dateOfBirth": "Date of birth",
     "photo": "Photo",

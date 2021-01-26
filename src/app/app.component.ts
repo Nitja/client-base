@@ -13,7 +13,6 @@ import { DataService } from "./services/data.service";
 })
 export class AppComponent {
   menu: any;
-  currentLanguage: string;
 
   constructor(
     private platform: Platform,
@@ -23,12 +22,6 @@ export class AppComponent {
     private dataService: DataService
   ) {
     this.initializeApp();
-    this.dataService.fetchLanguage();
-    this.currentLanguage = this.dataService.getLanguage();
-    console.log("currentlanguage from app.components" + this.currentLanguage);
-    translate.setDefaultLang(this.currentLanguage);
-
-    this.sideMenu();
   }
 
   initializeApp() {
@@ -38,42 +31,50 @@ export class AppComponent {
     });
     //clients v6ttakse baasis 1 kord ja kasutatakse 'ppi sees juba koopiat
     this.dataService.fetchClients();
+    this.dataService.fetchLanguage().then((val) => {
+      let language = val || "en";
+      this.dataService.setLanguage(language, false);
+      this.translate.setDefaultLang(language);
+      this.sideMenu();
+    });
   }
 
   sideMenu() {
-    this.translate.get("home.title").subscribe(() => {
-      this.menu = [
-        {
-          title: this.translate.instant("home.title"),
-          url: "/home",
-          icon: "home-outline",
-        },
-        {
-          title: this.translate.instant("notifications.title"),
-          url: "/notifications",
-          icon: "notifications-outline",
-        },
-        {
-          title: this.translate.instant("client.clientsTitle"),
-          url: "/clients",
-          icon: "people-outline",
-        },
-        {
-          title: this.translate.instant("product.productsTitle"),
-          url: "/products",
-          icon: "cart-outline",
-        },
-        {
-          title: this.translate.instant("debts.title"),
-          url: "/debts",
-          icon: "card-outline",
-        },
-        {
-          title: this.translate.instant("settings.title"),
-          url: "/settings",
-          icon: "settings-outline",
-        },
-      ];
+    this.dataService.languageChanged.subscribe(() => {
+      this.translate.get("home.title").subscribe(() => {
+        this.menu = [
+          {
+            title: this.translate.instant("home.title"),
+            url: "/home",
+            icon: "home-outline",
+          },
+          {
+            title: this.translate.instant("notifications.title"),
+            url: "/notifications",
+            icon: "notifications-outline",
+          },
+          {
+            title: this.translate.instant("client.clientsTitle"),
+            url: "/clients",
+            icon: "people-outline",
+          },
+          {
+            title: this.translate.instant("product.productsTitle"),
+            url: "/products",
+            icon: "cart-outline",
+          },
+          {
+            title: this.translate.instant("debts.title"),
+            url: "/debts",
+            icon: "card-outline",
+          },
+          {
+            title: this.translate.instant("settings.title"),
+            url: "/settings",
+            icon: "settings-outline",
+          },
+        ];
+      });
     });
   }
 }
