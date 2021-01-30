@@ -45,6 +45,7 @@ export class AddClientPage implements OnInit {
       dateOfBirth: new FormControl(),
       type: new FormControl(),
       photo: new FormControl(),
+       // photoUrl: new FormControl(),
       info: new FormControl(),
     });
   }
@@ -58,9 +59,11 @@ export class AddClientPage implements OnInit {
       dateOfBirth: new FormControl(client.dateOfBirth),
       type: new FormControl(client.type),
       photo: new FormControl(client.photo),
+      // photoUrl: new FormControl(client.photoUrl),
       info: new FormControl(client.info),
     });
-  }
+    this.url = client.photoUrl;
+    }
 
   onSubmit(form) {
     this.dataService.addClient(form, this.clientID);
@@ -77,10 +80,12 @@ export class AddClientPage implements OnInit {
       reader.onload = (event) => {
         // called once readAsDataURL is completed
         this.url = event.target.result;
-       // let photo = document.getElementById("photo");
-       // this.clientAddForm.
-      
+        this.clientAddForm.controls['photo'].setValue(this.url); // <-- Set Value for Validation
+        // this.clientAddForm.controls['photoUrl'].setValue(this.url); // <-- Set Value for Validation   
       };
+    } else {
+      this.clientAddForm.controls['photo'].setValue(this.client["photo"]); // <-- Set Value for Validation
+      // this.clientAddForm.controls['photoUrl'].setValue(this.client["photoUrl"]); // <-- Set Value for Validation
     }
   }
 }

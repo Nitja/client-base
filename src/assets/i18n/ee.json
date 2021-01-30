@@ -22,6 +22,16 @@
   
     "menu": {
       "title": "Menüü"
+    },
+
+    "settings": {
+      "title": "Settings ee",
+      "language": "Keel",
+      "export": "Export data ee",
+      "import": "Import data ee",
+      "en": "English",
+      "ee": "Eesti",
+      "ru": "Русский"
     }
   }
   

@@ -9,7 +9,7 @@ import { DataService } from "../services/data.service";
   styleUrls: ["./settings.page.scss"],
 })
 export class SettingsPage implements OnInit {
-  currentLanguage: string; //delete this modifier if all works well
+  currentLanguage: string;
 
   constructor(
     private translate: TranslateService,
@@ -22,11 +22,11 @@ export class SettingsPage implements OnInit {
 
   ngOnInit() {}
 
+  // here are list of languages, where can be added a new language
   async changeLanguage() {
-    //change in alert
     const alert = await this.alertController.create({
-      cssClass: "my-custom-class",
-      header: "Radio",
+      cssClass: "changeLanguageAlert",
+      header: this.translate.instant("settings.language"),
       inputs: [
         {
           name: "en",
@@ -52,17 +52,14 @@ export class SettingsPage implements OnInit {
       ],
       buttons: [
         {
-          text: "Cancel",
+          text: this.translate.instant("cancel"),
           role: "cancel",
-          cssClass: "secondary",
-          handler: () => {
-            console.log("Confirm Cancel");
-          },
+          cssClass: "buttons",
+          handler: () => {},
         },
         {
-          text: "Ok",
+          text: this.translate.instant("submit"),
           handler: (alertData) => {
-            console.log("alertdata: " + alertData);
             this.currentLanguage = alertData;
             this.translate.use(this.currentLanguage);
             this.dataService.setLanguage(this.currentLanguage, true);
@@ -70,10 +67,7 @@ export class SettingsPage implements OnInit {
         },
       ],
     });
-
     await alert.present();
-
-    
   }
 
   exportData() {
@@ -88,7 +82,53 @@ export class SettingsPage implements OnInit {
     // console.log(error);
     // });
     // };
+   // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+
   }
 
-  importData() {}
+  
+  
+  writeFile(fileEntry) {
+    // let dataObj = "Our stored data here";
+    // // Create a FileWriter object for our FileEntry (log.txt). 
+    // fileEntry.createWriter(function (fileWriter) {
+
+    //     fileWriter.onwriteend = function() {
+    //         console.log("Successful file write...");
+    //         readFile(fileEntry);
+    //     };
+
+    //     fileWriter.onerror = function (e) {
+    //         console.log("Failed file write: " + e.toString());
+    //     };
+
+    //     // If data object is not passed in, 
+    //     // create a new Blob instead. 
+    //     if (!dataObj) {
+    //         dataObj = new Blob(['some file data'], { type: 'text/plain' });
+    //     }
+
+    //     fileWriter.write(dataObj);
+    // });
+}
+
+  readFile(fileList: FileList): void {
+    let file = fileList[0];
+    let fileContent: string | ArrayBuffer;
+    let fileReader = new FileReader();
+
+     fileReader.readAsText(file);
+    // file holds all info about a file itself
+    console.log("file: ");
+    console.log(file);
+
+    fileReader.onloadend = function (x) {
+      // you can perform an action with readed data from file here
+      // here i can get stored data from file and import/write it into the storage
+      fileContent = fileReader.result;
+      console.log("fileContent: ");
+      console.log(fileContent);
+    };
+  }
+
 }

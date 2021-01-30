@@ -9,19 +9,21 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
+    <ion-item (click)="changeLanguage()">
       <ion-avatar slot="end">
-        <img *ngIf="currentLanguage == 'en'" src="../../assets/img/en.jpg">
-        <img *ngIf="currentLanguage == 'ee'" src="../../assets/img/ee.jpg">
-        <img *ngIf="currentLanguage == 'ru'" src="../../assets/img/ru.jpg">
+        <img *ngIf="currentLanguage == 'en'" src="../../assets/img/en.jpg" />
+        <img *ngIf="currentLanguage == 'ee'" src="../../assets/img/ee.jpg" />
+        <img *ngIf="currentLanguage == 'ru'" src="../../assets/img/ru.jpg" />
       </ion-avatar>
-      <ion-label (click)="changeLanguage()">{{ 'settings.language' | translate }}</ion-label>
+      <ion-label>{{ 'settings.language' | translate }}</ion-label>
+    </ion-item>
+    <ion-item (click)="exportData()">
+      <ion-label>{{ 'settings.export' | translate }}</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label (click)="exportData()">{{ 'settings.export' | translate }}</ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label (click)="importData()">{{ 'settings.import' | translate }}</ion-label>
+      <ion-label>{{ 'settings.import' | translate }}</ion-label>
+      <br />
+      <input type="file" accept=".txt, .db" (change)="readFile($event.target.files)" />
     </ion-item>
   </ion-list>
 </ion-content>
