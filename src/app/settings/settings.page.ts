@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AlertController } from "@ionic/angular";
 import { TranslateService } from "@ngx-translate/core";
 import { DataService } from "../services/data.service";
+import { Filesystem, FilesystemDirectory, FilesystemEncoding, } from "@capacitor/core";
 
 @Component({
   selector: "app-settings",
@@ -82,15 +83,37 @@ export class SettingsPage implements OnInit {
     // console.log(error);
     // });
     // };
-   // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
-
+    // window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
   }
 
-  
-  
+  async fileWrite() {
+    try {
+      const result = await Filesystem.writeFile({
+        path: "secrets/text.txt",
+        data: "This is a test",
+        directory: FilesystemDirectory.Documents,
+        encoding: FilesystemEncoding.UTF8,
+      });
+      console.log("Wrote file", result);
+    } catch (e) {
+      console.error("Unable to write file", e);
+    }
+  }
+
   writeFile(fileEntry) {
+    const writeSecretFile = async () => {
+      await Filesystem.writeFile({
+        path: "secrets/text.txt",
+        data: "This is a test",
+        directory: FilesystemDirectory.Documents,
+        encoding: FilesystemEncoding.UTF8,
+      });
+      console.log("file tehtud: /");
+      console.log(writeSecretFile);
+    };
+
     // let dataObj = "Our stored data here";
-    // // Create a FileWriter object for our FileEntry (log.txt). 
+    // // Create a FileWriter object for our FileEntry (log.txt).
     // fileEntry.createWriter(function (fileWriter) {
 
     //     fileWriter.onwriteend = function() {
@@ -102,22 +125,22 @@ export class SettingsPage implements OnInit {
     //         console.log("Failed file write: " + e.toString());
     //     };
 
-    //     // If data object is not passed in, 
-    //     // create a new Blob instead. 
+    //     // If data object is not passed in,
+    //     // create a new Blob instead.
     //     if (!dataObj) {
     //         dataObj = new Blob(['some file data'], { type: 'text/plain' });
     //     }
 
     //     fileWriter.write(dataObj);
     // });
-}
+  }
 
   readFile(fileList: FileList): void {
     let file = fileList[0];
     let fileContent: string | ArrayBuffer;
     let fileReader = new FileReader();
 
-     fileReader.readAsText(file);
+    fileReader.readAsText(file);
     // file holds all info about a file itself
     console.log("file: ");
     console.log(file);
@@ -130,5 +153,4 @@ export class SettingsPage implements OnInit {
       console.log(fileContent);
     };
   }
-
 }

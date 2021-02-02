@@ -47,7 +47,7 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">{{ 'client.photo' | translate }}</ion-label>
-        <img id="photo" [src]="url"> <br/>
+        <img id="photo" [src]="url" hidden> <br/>
         <input type='file' name="photo" (change)="onSelectFile($event)">
         <!-- <input type='hidden' name="photoHidden" formControlName="photo"> -->
       </ion-item>
